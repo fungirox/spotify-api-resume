@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+html{
+    scroll-behavior: smooth;
+    font-size: 24px;
+}
+body{
+    background-color: rgb(240, 241, 246);
+}
+#profile {
+    background-color: rgb(251, 251, 253);
+    border-radius: 24px;
+    box-shadow: 0 0 20px rgb(179,180,185);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+}
+#pfp {
+    width: 128px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 16px 8px;
+}
+#username {
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
+    font-size: 2rem;
+    color : rgb(28, 28, 30);
+
+}
+#follow {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    color: rgb(110, 110, 115);
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0px;
+}
+.item img {
+    width: 81px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.item {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+}

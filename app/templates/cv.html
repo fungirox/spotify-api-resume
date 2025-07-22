@@ -1,0 +1,50 @@
+{% extends './layout.html' %}
+{% block title %}Spotify CV{% endblock %}
+
+{% block body %}
+    {% if data %}
+        {% if data.user %}
+        <div id="profile">
+            <div class="">
+                <img id="pfp" src="{{data.user.image}}">
+            </div>
+            <div class="profile-info">
+                <span id="username">{{data.user.username}}</span>
+                <span id="follow">{{data.user.followers}} followers</span>
+                <span id="follow">{{data.user.following}} following</span>
+            </div>
+        </div>
+        {% endif %}
+        <div id="user-playlists">
+            <h1>playlists</h1>
+            {% for playlist in data.playlists %}
+                <div class="item">
+                    {{playlist.name}} - {{playlist.tracks}}
+                    <br>
+                    <!--- <img src="{{playlist.image}}"> --->
+                </div>
+            {% endfor %}
+        </div>
+        <div id="user-top-artists">
+            <h1>artists</h1>
+            {% for artist in data.artists %}
+                <div class="item">
+                    {{artist.name}}
+                    <br>
+                    <img src="{{artist.image}}">
+                </div>
+            {% endfor %}
+        </div>
+        <div id="user-top-traks">
+            <h1>tracks</h1>
+            {% for track in data.tracks %}
+                <div class="item">
+                    {{track.name}}
+                    <br>
+                    <img src="{{track.image}}">
+                </div>
+                
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
