@@ -23,6 +23,7 @@ API_URL = 'https://api.spotify.com/v1/'
 
 # long_term medium_term short_term
 TIME_RANGE = 'short_term'
+ITEMS_LIMIT = '3'
 
 @app.route('/')
 def index():
@@ -103,14 +104,12 @@ def get_spotify_data():
     try:
         playlists = get_playlists(headers)
         user_info = get_user_info(headers)
-        user_following = get_user_following(headers)
         artists = get_top_artist(headers)
         tracks = get_top_tracks(headers)
 
         data = {
             'playlists' : playlists,
             'user' : user_info,
-            'following': user_following,
             'artists' : artists,
             'tracks' : tracks,
         }
@@ -125,7 +124,7 @@ def get_spotify_data():
 def get_playlists(headers):
     playlist_items = {}
     try:
-        response = requests.get(API_URL + 'me/playlists', headers=headers)
+        response = requests.get(API_URL + f'me/playlists?limit={ITEMS_LIMIT}', headers=headers)
         response.raise_for_status()  
         playlist_items = get_playlist_items(response.json().get('items', []))
     except Exception as e:
@@ -162,6 +161,8 @@ def get_user_info(headers):
         response = requests.get(API_URL + 'me', headers=headers)
         response.raise_for_status()  
         user_info = get_user_item(response.json())
+        following = get_user_following(headers)
+        user_info.update({"following" : following})
     except Exception as e:
         print(f"Error obteniendo usuario: {e}")
     return user_info
@@ -184,26 +185,26 @@ def get_user_item(user):
         return {}
     
 def get_user_following(headers):
-    user_info = 0
+    following = 0
     try:
         response = requests.get(API_URL + 'me/following?type=artist', headers=headers)
         response.raise_for_status()  
-        user_info = get_user_following_item(response.json())
+        following = get_user_following_total(response.json())
     except Exception as e:
         print(f"Error obteniendo usuario: {e}")
-    return user_info
+    return following
 
-def get_user_following_item(artists):
+def get_user_following_total(response):
     # este recibe un diccionario y regresa un numero
-    if artists:
-        return artists.get('total')
+    if response:
+        return response['artists']['total']
     else:
         return 0
     
 def get_top_artist(headers):
     top_artists = {}
     try:
-        response = requests.get(API_URL + f"me/top/artists?{TIME_RANGE}", headers=headers)
+        response = requests.get(API_URL + f"me/top/artists?{TIME_RANGE}&limit={ITEMS_LIMIT}", headers=headers)
         response.raise_for_status()
         top_artists = get_artists_items(response.json().get('items', []))
     except Exception as e:
@@ -230,7 +231,7 @@ def get_artists_items(artists):
 def get_top_tracks(headers):
     top_artists = {}
     try:
-        response = requests.get(API_URL + f"me/top/tracks?{TIME_RANGE}", headers=headers)
+        response = requests.get(API_URL + f"me/top/tracks?{TIME_RANGE}&limit={ITEMS_LIMIT}", headers=headers)
         response.raise_for_status()
         top_artists = get_tracks_items(response.json().get('items', []))
     except Exception as e:

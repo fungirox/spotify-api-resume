@@ -2,49 +2,63 @@
 {% block title %}Spotify CV{% endblock %}
 
 {% block body %}
-    {% if data %}
-        {% if data.user %}
-        <div id="profile">
-            <div class="">
-                <img id="pfp" src="{{data.user.image}}">
-            </div>
-            <div class="profile-info">
-                <span id="username">{{data.user.username}}</span>
-                <span id="follow">{{data.user.followers}} followers</span>
-                <span id="follow">{{data.user.following}} following</span>
-            </div>
+{% if data %}
+{% if data.user %}
+<div id="profile">
+    <div class="">
+        <img id="pfp" src="{{data.user.image}}">
+    </div>
+    <div class="profile-info">
+        <span id="username">{{data.user.username}}</span>
+        <span id="follow">{{data.user.followers}} followers</span>
+        <span id="follow">{{data.user.following}} following</span>
+        <span id="ig"><img src="https://img.icons8.com/sf-regular-filled/24/6E6E73/instagram-new.png"
+                alt="instagram-new" />@fungirox</span>
+    </div>
+</div>
+<div class="content">
+    <div class="col-left">
+        <div id="about-me">
+            <h1>About me</h1>
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eos alias. Voluptatem inventore dolor ex numquam qui, quo, ducimus reiciendis tempore ut provident perspiciatis perferendis recusandae voluptatibus doloribus eum fugit?</span>
         </div>
+        <div id="fav-album">
+            <img >
+        </div>
+    </div>
+    <div class="col-right">
         {% endif %}
         <div id="user-playlists">
-            <h1>playlists</h1>
+            <h1>My Playlists</h1>
             {% for playlist in data.playlists %}
-                <div class="item">
-                    {{playlist.name}} - {{playlist.tracks}}
-                    <br>
-                    <!--- <img src="{{playlist.image}}"> --->
-                </div>
+            <div class="item">
+                {{playlist.name}} - {{playlist.tracks}}
+                <br>
+                <!--- <img src="{{playlist.image}}"> --->
+            </div>
             {% endfor %}
         </div>
         <div id="user-top-artists">
-            <h1>artists</h1>
+            <h1>Top Artists</h1>
             {% for artist in data.artists %}
-                <div class="item">
-                    {{artist.name}}
-                    <br>
-                    <img src="{{artist.image}}">
-                </div>
+            <div class="item">
+                {{artist.name}}
+                <br>
+                <img src="{{artist.image}}">
+            </div>
             {% endfor %}
         </div>
         <div id="user-top-traks">
-            <h1>tracks</h1>
+            <h1>Top Tracks</h1>
             {% for track in data.tracks %}
-                <div class="item">
-                    {{track.name}}
-                    <br>
-                    <img src="{{track.image}}">
-                </div>
-                
+            <div class="item">
+                {{track.name}}
+                <br>
+                <img src="{{track.image}}">
+            </div>
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

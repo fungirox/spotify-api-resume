@@ -34,6 +34,21 @@ body{
     font-size: 0.7rem;
     color: rgb(110, 110, 115);
 }
+#ig {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    color: rgb(110, 110, 115);
+    display: flex;
+    flex-direction: row;
+}
+.content{
+    display: flex;
+    flex-direction: row;
+}
+.ig-icon{
+    width: 24px;
+    height: 24px;
+}
 .profile-info {
     display: flex;
     flex-direction: column;
@@ -47,4 +62,10 @@ body{
 .item {
     font-family: 'Fira Code', monospace;
     font-size: 0.6rem;
+}
+.col-left{
+    width: 20%;
+}
+.col-right{
+    width: 70%;
 }
