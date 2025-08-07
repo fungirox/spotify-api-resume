@@ -22,7 +22,7 @@ TOKEN_URL = 'https://accounts.spotify.com/api/token'
 API_URL = 'https://api.spotify.com/v1/'
 
 # long_term medium_term short_term
-TIME_RANGE = 'short_term'
+# TIME_RANGE = 'short_term'
 ITEMS_LIMIT = '3'
 
 @app.route('/')
@@ -90,7 +90,7 @@ def refresh_token():
     return redirect('/spotify-cv')
 
 
-@app.route('/spotify-cv')
+@app.route('/spotify-cv', methods=['GET','POST'])
 def get_spotify_data():
     if 'access_token' not in session:
         return redirect('/login')
@@ -101,19 +101,26 @@ def get_spotify_data():
         'Authorization': f"Bearer {session['access_token']}"
     }
 
+    if request.method == 'POST':
+        TIME_RANGE = request.form.get("time-range")
+    else:
+        TIME_RANGE = 'short_term'
+    #TIME_RANGE = 'short_term'
+
     try:
+        
         playlists = get_playlists(headers)
         user_info = get_user_info(headers)
-        artists = get_top_artist(headers)
-        tracks = get_top_tracks(headers)
+        artists = get_top_artists(headers, TIME_RANGE)
+        tracks = get_top_tracks(headers, TIME_RANGE)
 
         data = {
-            'playlists' : playlists,
             'user' : user_info,
+            'playlists' : playlists,
             'artists' : artists,
             'tracks' : tracks,
         }
-        return render_template('cv.html',data=data)
+        return render_template('cv.html', data=data)
     except requests.exceptions.HTTPError as e:
         print(f"Error HTTP: {e}")
         return None, "Token invalido o expirado"
@@ -201,10 +208,10 @@ def get_user_following_total(response):
     else:
         return 0
     
-def get_top_artist(headers):
+def get_top_artists(headers, TIME_RANGE):
     top_artists = {}
     try:
-        response = requests.get(API_URL + f"me/top/artists?{TIME_RANGE}&limit={ITEMS_LIMIT}", headers=headers)
+        response = requests.get(API_URL + f"me/top/artists?time_range={TIME_RANGE}&limit={ITEMS_LIMIT}", headers=headers)
         response.raise_for_status()
         top_artists = get_artists_items(response.json().get('items', []))
     except Exception as e:
@@ -228,15 +235,16 @@ def get_artists_items(artists):
     else: 
         return {}
     
-def get_top_tracks(headers):
-    top_artists = {}
+def get_top_tracks(headers, TIME_RANGE):
+    top_tracks = {}
     try:
-        response = requests.get(API_URL + f"me/top/tracks?{TIME_RANGE}&limit={ITEMS_LIMIT}", headers=headers)
+        print(TIME_RANGE)
+        response = requests.get(API_URL + f"me/top/tracks?time_range={TIME_RANGE}&limit={ITEMS_LIMIT}", headers=headers)
         response.raise_for_status()
-        top_artists = get_tracks_items(response.json().get('items', []))
+        top_tracks = get_tracks_items(response.json().get('items', []))
     except Exception as e:
         print(f"Error obteniendo top tracks: {e}")
-    return top_artists
+    return top_tracks
 
 def get_tracks_items(tracks):
     # este recibe una lista y envia una lista con un diccionario dentro
@@ -262,3 +270,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
 
 
+# canvas dimension : 1080 * 1920 
+# i need to use Java script for the canvas design and generate
+# ideas: u can select the period like: short-tem medium-term long-term
+# also: u can add a little description about u or music
+# i dont know
