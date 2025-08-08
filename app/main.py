@@ -143,18 +143,18 @@ def get_playlist_items(playlists):
     if playlists:
         playlist_new = []
         for playlist in playlists:
-            """
+            
             image = None
             if playlist.get('images') and len(playlist['images']) > 0:
                 image = playlist['images'][0].get('url')
-            """ 
+            
             tracks = 0
             if playlist.get('tracks') and len(playlist['tracks']) > 0:
                 tracks = playlist['tracks'].get('total')
                 
             item = {
                 'name' : playlist.get('name','Sin nombre'),
-                # 'image' : image or 'image_default.jpg',
+                'image' : image or 'image_default.jpg',
                 'tracks' : tracks
             }
             playlist_new.append(item)

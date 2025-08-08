@@ -11,54 +11,60 @@
             </div>
             <div class="profile-info">
                 <span id="username">{{data.user.username}}</span>
-                <span id="follow">{{data.user.followers}} followers</span>
-                <span id="follow">{{data.user.following}} following</span>
+                <span class="numbers">{{data.user.followers}} followers</span>
+                <span class="numbers">{{data.user.following}} following</span>
             </div>
         </div>
     {% endif %}
     <div class="content">
         <div class="col-left">
             <div id="about-me">
-                <h1 class="titleLarge">About me</h1>
-                <p class="descriptionText">
+                <h1 class="title-large">About me</h1>
+                <p class="description-text">
                     <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eos alias. Voluptatem
                     inventoredolor ex numquam qui, quo, ducimus reiciendis tempore ut provident perspiciatis perferendis
                     recusandae voluptatibus doloribus eum fugit?</span>
                 </p>
             </div>
             <div id="fav-album">
-                <h1 class="titleLarge">Favorite Album</h1>
-                <img src="https://i.pinimg.com/736x/d3/f1/8c/d3f18c4f622f69f65bc162db89e658e5.jpg">
+                <h1 class="title-large">Favorite Album</h1>
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/d3/f1/8c/d3f18c4f622f69f65bc162db89e658e5.jpg">
+                    <span class="title-small">Album Name - Artist Name</span><span class="numbers">[año]</span> 
+                </div>
             </div>
         </div>
         <div class="col-right">
             <div id="user-playlists">
-                <h1 class="titleLarge">My Playlists</h1>
-                {% for playlist in data.playlists %}
-                <div class="">
-                    <span class="titleSmall">{{playlist.name}} - {{playlist.tracks}}</span> 
-                    <!--- <img src="{{playlist.image}}"> --->
+                <h1 class="title-large">My Playlists</h1>
+                <div class="grid-cards">
+                    {% for playlist in data.playlists %}
+                    <div class="card">
+                        <img src="{{playlist.image}}">
+                        <span class="title-small">{{playlist.name}}</span>
+                        <span class="numbers">[{{playlist.tracks}}]</span>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
             <div id="user-top-artists">
-                <h1 class="titleLarge">Top Artists</h1>
-                <div class="list-items">
+                <h1 class="title-large">Top Artists</h1>
+                <div class="grid-cards">
                     {% for artist in data.artists %}
-                    <div class="item">
+                    <div class="card">
                         <img src="{{artist.image}}">
-                        <span class="">{{artist.name}}</span>
+                        <span class="title-small">{{artist.name}}</span>
                     </div>
                     {% endfor %}
                 </div>
             </div>
             <div id="user-top-traks">
-                <h1 class="titleLarge">Top Tracks</h1>
-                <div class="list-items">
+                <h1 class="title-large">Top Tracks</h1>
+                <div class="grid-cards">
                     {% for track in data.tracks %}
-                    <div class="item">
+                    <div class="card">
                         <img src="{{track.image}}">
-                        <span class="">{{track.name}}</span>
+                        <span class="title-small">{{track.name}}</span>
                     </div>
                     {% endfor %}
                 </div>

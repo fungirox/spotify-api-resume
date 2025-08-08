@@ -21,7 +21,7 @@ body{
     border-radius: 24px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-cards: center;
     padding: 8px;
 }
 #pfp {
@@ -36,22 +36,16 @@ body{
     font-size: 2rem;
     color : rgb(28, 28, 30);
 }
-#follow {
-    font-size: 0.55em;
-    color: rgb(110, 110, 115);
-}
 #fav-album{
-    background-color: pink;
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
-#fav-album img{
-    max-width: inherit;
-    width: inherit;
-    border-radius: 8px;
-    overflow: hidden;
+#user-playlists{
+    display: flex;
+    flex-direction: column;
 }
+
 .content{
     display: flex;
     flex-direction: row;
@@ -66,42 +60,46 @@ body{
     flex-direction: column;
     margin: 16px 0px;
 }
-.item img {
-    /*max-width: inherit;*/
-    width: 81px;
-    border-radius: 8px;
-    overflow: hidden;
+.grid-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
-.item {
-    background-color: rgba(127, 255, 212, 0.5);
-    font-size: 0.6rem;
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 4px 8px;
-    
 }
-.list-items{
-    background-color: blueviolet;
-    display: grid;
-    grid-template-columns: auto auto auto;
+.card img {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 .col-left{
     width: 25%;
+    display: flex;
+    flex-direction: column;
 }
 .col-right{
     width: 65%;
 }
-.titleLarge{
+.title-large{
     font-family: 'Geist', serif;
     font-size: 1.2em;
 }
-.titleSmall{
+.title-small{
     font-size: 0.75em;
     font-family: 'Manrope', sans-serif;
 }
-.descriptionText{
+.description-text{
     font-size: 0.6em;
     line-height: 1em;
     font-family: 'Manrope', sans-serif;
+}
+.numbers {
+    font-size: 0.55em;
+    color: rgb(110, 110, 115);
 }
