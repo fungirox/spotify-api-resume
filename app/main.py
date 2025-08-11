@@ -105,7 +105,6 @@ def get_spotify_data():
         TIME_RANGE = request.form.get("time-range")
     else:
         TIME_RANGE = 'short_term'
-    #TIME_RANGE = 'short_term'
 
     try:
         
@@ -119,6 +118,7 @@ def get_spotify_data():
             'playlists' : playlists,
             'artists' : artists,
             'tracks' : tracks,
+            'range' : TIME_RANGE
         }
         return render_template('cv.html', data=data)
     except requests.exceptions.HTTPError as e:

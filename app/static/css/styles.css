@@ -7,7 +7,7 @@ body{
     background-color: rgb(240, 241, 246);
     font-family: 'Manrope', sans-serif;
 }
-.idk-how-to-name-it{
+.display{
     background-color: rgb(251, 251, 253);
     width: 50%;
     margin-left:auto;
@@ -16,19 +16,37 @@ body{
     flex-direction: column;
 }
 #profile {
-    /* background-color: rgb(251, 251, 253);
-    box-shadow: 0 0 20px rgb(179,180,185); */
-    border-radius: 24px;
     display: flex;
     flex-direction: row;
-    align-cards: center;
+    justify-content: space-around;
     padding: 8px;
 }
+.idk{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.profile-photo{
+    width: 20%;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.time-range{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 #pfp {
-    width: 128px;
-    border-radius: 50%;
+    display: block;
     overflow: hidden;
-    margin: 16px 8px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
 }
 #username {
     font-family: 'Geist', serif;
@@ -50,15 +68,6 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-}
-.ig-icon{
-    width: 24px;
-    height: 24px;
-}
-.profile-info {
-    display: flex;
-    flex-direction: column;
-    margin: 16px 0px;
 }
 .grid-cards{
     display: grid;
@@ -89,6 +98,8 @@ body{
 .title-large{
     font-family: 'Geist', serif;
     font-size: 1.2em;
+    font-weight: bold;
+    margin: none;
 }
 .title-small{
     font-size: 0.75em;
