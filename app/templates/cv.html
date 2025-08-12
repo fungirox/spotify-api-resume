@@ -5,13 +5,13 @@
 <div class="display">
     {% if data %}
     {% if data.user %}
-        <div id="profile">
+        <div class="profile">
             <div class="profile-photo">
-                <img id="pfp" src="{{data.user.image}}">
+                <img class="pfp" src="{{data.user.image}}">
             </div>
             <div class="idk">
                 <div class="profile-info">
-                    <span id="username">{{data.user.username}}</span>
+                    <span class="username">{{data.user.username}}</span>
                     <span class="numbers">{{data.user.followers}} followers</span>
                     <span class="numbers">{{data.user.following}} following</span>
                 </div>
@@ -39,7 +39,7 @@
     {% endif %}
     <div class="content">
         <div class="col-left">
-            <div id="about-me">
+            <div class="about-me">
                 <span class="title-large">About me</span>
                 <p class="description-text">
                     <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eos alias. Voluptatem
@@ -47,7 +47,7 @@
                     recusandae voluptatibus doloribus eum fugit?</span>
                 </p>
             </div>
-            <div id="fav-album">
+            <div class="fav-album">
                 <span class="title-large">Favorite Album</span>
                 <div class="card">
                     <img src="https://i.pinimg.com/736x/d3/f1/8c/d3f18c4f622f69f65bc162db89e658e5.jpg">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-right">
-            <div id="user-playlists">
+            <div class="user-playlists">
                 <span class="title-large">My Playlists</span>
                 <div class="grid-cards">
                     {% for playlist in data.playlists %}
@@ -68,7 +68,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div id="user-top-artists">
+            <div class="user-top-artists">
                 <span class="title-large">Top Artists</span>
                 <div class="grid-cards">
                     {% for artist in data.artists %}
@@ -79,7 +79,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div id="user-top-traks">
+            <div class="user-top-traks">
                 <span class="title-large">Top Tracks</span>
                 <div class="grid-cards">
                     {% for track in data.tracks %}
