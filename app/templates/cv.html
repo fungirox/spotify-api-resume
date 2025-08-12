@@ -41,17 +41,22 @@
         <div class="col-left">
             <div class="about-me">
                 <span class="title-large">About me</span>
-                <p class="description-text">
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, eos alias. Voluptatem
-                    inventoredolor ex numquam qui, quo, ducimus reiciendis tempore ut provident perspiciatis perferendis
-                    recusandae voluptatibus doloribus eum fugit?</span>
-                </p>
+                <div class="about-me-input">
+                    <textarea ></textarea>
+                </div>
             </div>
             <div class="fav-album">
                 <span class="title-large">Favorite Album</span>
                 <div class="card">
-                    <img src="https://i.pinimg.com/736x/d3/f1/8c/d3f18c4f622f69f65bc162db89e658e5.jpg">
-                    <span class="title-small">Album Name - Artist Name</span><span class="numbers">[año]</span> 
+                    {% if data.album %}
+                        <img src="https://i.pinimg.com/736x/d3/f1/8c/d3f18c4f622f69f65bc162db89e658e5.jpg">
+                        <span class="title-small">Album Name - Artist Name</span><span class="numbers">[año]</span> 
+                    {% else %}
+                        <div class="select-album">
+                            <a href=""><span class="description-text">Select album</span></a>
+                        </div>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>

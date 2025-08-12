@@ -4,11 +4,11 @@ html{
     font-size: 24px;
 }
 body{
-    background-color: rgb(250,250,250);
+    background-color: rgb(245,245,245);
     font-family: 'Manrope', sans-serif;
 }
 .display{
-    background-color: rgb(245,245,245);
+    background-color: rgb(250,250,250);
     width: 50%;
     margin-left:auto;
     margin-right:auto;
@@ -135,6 +135,17 @@ body{
     height: 50%;
     max-height: 50%;
     width: auto;
+}
+.about-me-input{
+    width: 100%;
+}
+.about-me-input textarea{
+    width: 100%;
+    height: 100%; 
+    box-sizing: border-box;
+}
+.select-album{
+    background-color: rgb(212, 212, 212);
 }
 /*
 FAFAFA 250 250 250
