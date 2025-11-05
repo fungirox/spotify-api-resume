@@ -128,6 +128,57 @@ def get_spotify_data():
         print(f"Error general {e}")
         return None, "Error obteniendo datos de Spotify"
 
+@app.route('/search_album', methods=['GET'])
+def search_album():
+    if 'access_token' not in session:
+        return redirect('/login')
+    if datetime.now().timestamp() > session['expires_at']:
+        return redirect('/refresh-token')
+    headers = {
+        'Authorization': f"Bearer {session['access_token']}"
+    }
+    
+    # TIME_RANGE = request.form.get("time-range")
+
+    ALBUM_NAME = 'Dáltonico'
+    return get_album(headers,ALBUM_NAME)
+
+def get_album(headers,ALBUM_NAME):
+    album_items = {}
+    try:
+        response = requests.get(API_URL + f'search?q={ALBUM_NAME}&type=album&limit=5', headers=headers)
+        response.raise_for_status()  
+        album_items = get_album_items(response.json()['albums']['items'])
+    except Exception as e:
+        print(f"Error obteniendo album: {e}")
+    return album_items
+
+def get_album_items(albums):
+    # este recibe una lista y envia una lista con un diccionario dentro
+    if albums:
+        albums_new = []
+        for album in albums:
+            image = None
+            if album.get('images') and len(album['images']) > 0:
+                image = album['images'][0].get('url')
+            tracks = 0
+            if album.get('tracks') and len(album['tracks']) > 0:
+                tracks = album['tracks'].get('total')
+            artist = None
+            if album.get('artists') and len(album['artists']) > 0:
+                artist = album['artists'][0].get('name')
+            item = {
+                'name' : album.get('name','Sin nombre'),
+                'image' : image or 'image_default.jpg',
+                'tracks' : tracks,
+                'release_date': album.get('release_date'),
+                'artist': artist
+            }
+            albums_new.append(item)
+        return albums_new
+    else: 
+        return []
+
 def get_playlists(headers):
     playlist_items = {}
     try:
@@ -160,7 +211,7 @@ def get_playlist_items(playlists):
             playlist_new.append(item)
         return playlist_new
     else: 
-        return {}
+        return []
 
 def get_user_info(headers):
     user_info = {}
@@ -233,7 +284,7 @@ def get_artists_items(artists):
             artist_new.append(item)
         return artist_new
     else: 
-        return {}
+        return []
     
 def get_top_tracks(headers, TIME_RANGE):
     top_tracks = {}
@@ -264,7 +315,7 @@ def get_tracks_items(tracks):
             track_new.append(item)
         return track_new
     else: 
-        return {}
+        return []
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
