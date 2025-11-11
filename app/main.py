@@ -8,6 +8,8 @@ import json
 from flask import Flask,redirect,request,jsonify,session,render_template
 # this is for encode URL params like, hace la cadena de eso con un diccionario "value=1&string=hola"
 import urllib.parse
+import secrets
+import hashlib
 
 load_dotenv()
 
@@ -31,6 +33,11 @@ def index():
 
 @app.route('/login')
 def login():
+    code_verifier = secrets.token_urlsafe(64)
+    session['code_verifier'] = code_verifier
+    hashed = hashlib.sha256(code_verifier.encode('utf-8')).digest()
+    code_challenge = base64.urlsafe_b64encode(hashed).decode('utf-8').replace('=', '')
+
     # here can we add different scopes for read more private/public info (o゜▽゜)o☆
     scope = 'user-read-private user-read-email user-top-read user-follow-read'
     params = {
@@ -38,7 +45,10 @@ def login():
         'response_type' : 'code',
         'scope' : scope,
         'redirect_uri' : REDIRECT_URI,
-        'show_dialog' : True
+        'show_dialog' : True,
+        'code_challenge_method': 'S256',  
+        'code_challenge': code_challenge
+
     }
     auth_url = f"{AUTH_URL}?{urllib.parse.urlencode(params)}"
 
@@ -50,12 +60,18 @@ def callback():
         return jsonify({"error": request.args['error']})
     
     if 'code' in request.args:
+        code_verifier = session.pop('code_verifier', None)
+
+        if not code_verifier:
+            return jsonify({"error": "code_verifier not found in session"}), 400
+
         req_body = {
             'code': request.args['code'],
             'grant_type': 'authorization_code',
             'redirect_uri': REDIRECT_URI,
             'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET
+            #'client_secret': CLIENT_SECRET
+            'code_verifier': code_verifier
         }
 
         response = requests.post(TOKEN_URL, data=req_body)
@@ -78,7 +94,7 @@ def refresh_token():
             'grant_type': 'refresh_token',
             'refresh_token': session['refresh_token'],
             'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET
+            #'client_secret': CLIENT_SECRET
         }
 
         response = requests.post(TOKEN_URL, data=req_body)
@@ -107,7 +123,6 @@ def get_spotify_data():
         TIME_RANGE = 'short_term'
 
     try:
-        
         playlists = get_playlists(headers)
         user_info = get_user_info(headers)
         artists = get_top_artists(headers, TIME_RANGE)
