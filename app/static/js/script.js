@@ -1,9 +1,13 @@
 window.onload = function () {
     const modalAlbum = document.getElementById("modal-album");
     const btnSelectAlbum = document.getElementById("btn-select-album");
+    const displayAlbum = document.getElementById("album-display");
     const spanClose = document.getElementsByClassName("close")[0];
 
     btnSelectAlbum.onclick = function () {
+        modalAlbum.style.display = "block";
+    }
+    displayAlbum.onclick = function () {
         modalAlbum.style.display = "block";
     }
     spanClose.onclick = function () {
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const year = clickedImage.dataset.year;
 
             selectedImage.src = imgSrc;
-            selectedInfo.textContent = `${name} - ${artist}`;
+            selectedInfo.textContent = `${name}`;
             selectedYear.textContent = `[${year}]`;
 
             albumDisplay.style.display = 'block';

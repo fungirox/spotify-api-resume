@@ -1,7 +1,7 @@
 {% for album in data.album_list %}
-<div class="card">
-    <img src="{{ album.image }}" alt="{{ album.name }}" class="album-choice" data-img-src="{{album.image}}"
+<div class="card album-choice" data-img-src="{{album.image}}"
         data-name="{{album.name}}" data-year="{{album.release_date}}">
+    <img src="{{ album.image }}" alt="{{ album.name }}">
     <span class="title-small">{{album.name}}</span>
 </div>
 {% endfor %}

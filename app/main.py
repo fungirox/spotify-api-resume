@@ -100,8 +100,19 @@ def refresh_token():
         response = requests.post(TOKEN_URL, data=req_body)
         new_token_info = response.json()
         
+        if 'error' in new_token_info or response.status_code != 200:
+            print(f'Error refreshing token: {new_token_info}')
+            
+            session.pop('access_token', None)
+            session.pop('refresh_token', None)
+            session.pop('expires__at', None)
+
+            return redirect('/login')
+
         session['access_token'] = new_token_info['access_token']
         session['expires_at'] = datetime.now().timestamp() + new_token_info['expires_in']
+        if 'refresh_token' in new_token_info:
+            session['refresh_token'] = new_token_info['refresh_token']
 
     return redirect('/spotify-cv')
 
