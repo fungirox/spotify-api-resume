@@ -1,0 +1,6 @@
+{% for album in data.album_list %}
+<div class="card">
+    <img src="{{album.image}}">
+    <span class="title-small">{{album.name}}</span>
+</div>
+{% endfor %}

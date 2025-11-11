@@ -3,6 +3,7 @@ var modalAlbum = document.getElementById("modal-album");
 var btnSelectAlbum = document.getElementById("btn-select-album");
 var spanClose = document.getElementsByClassName("close")[0];
 
+
     btnSelectAlbum.onclick = function(){
         modalAlbum.style.display = "block";
     }
@@ -14,5 +15,6 @@ var spanClose = document.getElementsByClassName("close")[0];
             modalAlbum.style.display = "none";
         }
     }
+
 };
 

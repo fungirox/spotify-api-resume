@@ -58,8 +58,9 @@
                         <div id="modal-album" class="modal">
                             <div id="modal-content-album" class="modal-content">
                                 <span class="close">&times;</span>
-                                <p>Some text in the modal...</p>
-                                <span class="username">{{data.user.username}}</span>
+                                <br>
+                                <input type="text" placeholder="Search" name="search-album" id="search-album" hx-get="/search-album" hx-trigger="keyup changed delay:500ms" hx-target="#album-list">
+                                <div id="album-list" class="grid-cards"></div>
                             </div>
                         </div>
                     {% endif %}

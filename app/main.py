@@ -128,7 +128,7 @@ def get_spotify_data():
         print(f"Error general {e}")
         return None, "Error obteniendo datos de Spotify"
 
-@app.route('/search_album', methods=['GET'])
+@app.route('/search-album', methods=['GET'])
 def search_album():
     if 'access_token' not in session:
         return redirect('/login')
@@ -138,10 +138,13 @@ def search_album():
         'Authorization': f"Bearer {session['access_token']}"
     }
     
-    # TIME_RANGE = request.form.get("time-range")
+    ALBUM_NAME = request.args.get("search-album")
 
-    ALBUM_NAME = 'Dáltonico'
-    return get_album(headers,ALBUM_NAME)
+    data = {
+        'album_list' : get_album(headers,ALBUM_NAME)
+    }
+
+    return render_template('list-album.html', data=data)
 
 def get_album(headers,ALBUM_NAME):
     album_items = {}
