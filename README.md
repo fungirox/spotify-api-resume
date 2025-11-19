@@ -25,7 +25,7 @@ pip install -r requirements.txt
 - Copy Client ID
 ### Configure environment
 - Create .env file and paste your **Client ID**. It should look like this:
-```
+```python
 CLIENT_ID = "m8edca6i5n3droarts20fjvxi8y1ye9c" # paste your Spotify app Client ID here
 ```
 ### Run
@@ -74,6 +74,7 @@ Personal project for practicing API integration and OAuth flows.
 
 ### Credits
 Roxanna Clark [Github](https://github.com/fungirox)
+
 
 
 
