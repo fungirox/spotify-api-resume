@@ -54,7 +54,7 @@ You can change it using the dropdown
 The selection will appear on the main page instantly, you can change it by clicking again in the album cover.
 <img alt="show-album" src="https://raw.githubusercontent.com/fungirox/spotify-api-resume/main/readme-images/7-album-selected.png" />
 
-***Note:** Currently, if you use the dropdown, it will reset the album and note input. It’s temporal and I will fix it soon*
+***Note:** Currently, if you use the dropdown, it will reset the album and note input. and i will fix it soon. ver 1.0*
 
 6. Add a short description of yourself in the text input
 <img alt="show-album" src="https://raw.githubusercontent.com/fungirox/spotify-api-resume/main/readme-images/8-about-me.png" />
@@ -63,10 +63,10 @@ The selection will appear on the main page instantly, you can change it by click
 - OAuth 2.0 authentication with Spotify
 - Fetches user's top artists and tracks
 - Generates visual music resume
-## 🚀 Coming soon
-- Download resume as PNG for Instagram Stories
-- Generate your top 3 songs playlist
-- Implement Tailwind CSS for frontend styling
+## 🚀 Coming soon (To do)
+- [ ] Download resume as PNG for Instagram Stories
+- [ ] Generate your top 3 songs playlist
+- [ ] Implement Tailwind CSS for frontend styling
 ## 📝 Note
 Personal project for practicing API integration and OAuth flows.
 
@@ -74,5 +74,6 @@ Personal project for practicing API integration and OAuth flows.
 
 ### Credits
 Roxanna Clark [Github](https://github.com/fungirox)
+
 
 
