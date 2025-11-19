@@ -77,7 +77,9 @@
                 <div class="grid-cards">
                     {% for playlist in data.playlists %}
                     <div class="card">
-                        <img src="{{playlist.image}}">
+                        <div class="square-image">
+                            <img src="{{playlist.image}}">
+                        </div>
                         <span class="title-small">{{playlist.name}}</span>
                         <span class="numbers">[{{playlist.tracks}}]</span>
                     </div>

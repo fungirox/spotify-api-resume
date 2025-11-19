@@ -14,14 +14,21 @@ import hashlib
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
-CLIENT_ID = os.getenv("CLIENT_ID")
-CLIENT_SECRET = os.getenv("CLIENT_SECRET")
-
+app.secret_key = os.getenv('SECRET_KEY')
+CLIENT_ID = os.getenv('CLIENT_ID')
+"""
+REDIRECT_URI = os.getenv('REDIRECT_URI') #'http://localhost:5000/callback'
+AUTH_URL = os.getenv('AUTH_URI') # 'https://accounts.spotify.com/authorize'
+TOKEN_URL = os.getenv('TOKEN_URI') # 'https://accounts.spotify.com/api/token'
+API_URL = os.getenv('API_URI') # 'https://api.spotify.com/v1/'
+"""
 REDIRECT_URI = 'http://localhost:5000/callback'
 AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 API_URL = 'https://api.spotify.com/v1/'
+
+# CLIENT_SECRET is for the old Spotify Auth
+# CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 # long_term medium_term short_term
 # TIME_RANGE = 'short_term'
