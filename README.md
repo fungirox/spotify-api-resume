@@ -65,7 +65,7 @@ The selection will be in the main page instant, you can change it doing click ag
 - Generates visual music resume
 ## 🚀 Coming soon
 - Download resume as png for ig story
-- Generate your top 3 songs
+- Generate your top 3 songs playlist
 - Implement Tailwind for Front-End 
 ## 📝 Note
 Personal project for practicing API integration and OAuth flows.
@@ -74,3 +74,4 @@ Personal project for practicing API integration and OAuth flows.
 
 ### Credits
 Roxanna Clark [Github](https://github.com/fungirox)
+
