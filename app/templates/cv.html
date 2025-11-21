@@ -77,9 +77,9 @@
                     <input type="hidden" name="id" value="{{data.user.id}}">
                     <input type="hidden" name="range" value="{{data.range}}">
                     {% for track in data.tracks %}
-                        <input type="hidden" name="{{loop.index}}-track" value="{{track.id}}">
+                        <input type="hidden" name="{{loop.index}}-track" value="{{track.uri}}">
                     {% endfor %}
-                    <button type="submit">Generar playlist</button>
+                    <button type="submit" target="_blank">Generar playlist</button>
                 </form>
             </div>
         </div>
@@ -116,7 +116,7 @@
                     <div class="card">
                         <img src="{{track.image}}">
                         <span class="title-small">{{track.name}}</span>
-                        <span class="numbers">{{track.id}}</span>
+                        <span class="numbers">{{track.uri}}</span>
                     </div>
                     {% endfor %}
                 </div>
