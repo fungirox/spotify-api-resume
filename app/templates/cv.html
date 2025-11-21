@@ -64,11 +64,23 @@
                         <div id="modal-content-album" class="modal-content">
                             <span class="close">&times;</span>
                             <br>
-                            <input type="text" placeholder="Search" name="search-album" hx-get="/search-album" hx-target="#album-list">
+                            <input type="text" placeholder="Search" name="search-album" hx-get="/search-album"
+                                hx-target="#album-list">
                             <div id="album-list" class="grid-cards"></div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="generate">
+                <form action="/create-playlist" method="POST">
+                    <input type="hidden" name="user" value="{{data.user.username}}">
+                    <input type="hidden" name="id" value="{{data.user.id}}">
+                    <input type="hidden" name="range" value="{{data.range}}">
+                    {% for track in data.tracks %}
+                        <input type="hidden" name="{{loop.index}}-track" value="{{track.id}}">
+                    {% endfor %}
+                    <button type="submit">Generar playlist</button>
+                </form>
             </div>
         </div>
         <div class="col-right">
@@ -104,6 +116,7 @@
                     <div class="card">
                         <img src="{{track.image}}">
                         <span class="title-small">{{track.name}}</span>
+                        <span class="numbers">{{track.id}}</span>
                     </div>
                     {% endfor %}
                 </div>
